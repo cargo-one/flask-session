@@ -133,7 +133,6 @@ class RedisSessionInterface(SessionInterface):
         if val is not None:
             if '/user/login' in request.path:
                 sid = self._generate_sid()
-                return self.session_class(sid=sid, permanent=self.permanent)
             try:
                 data = self.serializer.loads(val)
                 return self.session_class(data, sid=sid)
@@ -259,7 +258,6 @@ class MemcachedSessionInterface(SessionInterface):
         if val is not None:
             if '/user/login' in request.path:
                 sid = self._generate_sid()
-                return self.session_class(sid=sid, permanent=self.permanent)
             try:
                 if not PY2:
                     val = want_bytes(val)
@@ -435,7 +433,6 @@ class MongoDBSessionInterface(SessionInterface):
         if document is not None:
             if '/user/login' in request.path:
                 sid = self._generate_sid()
-                return self.session_class(sid=sid, permanent=self.permanent)
             try:
                 val = document['val']
                 data = self.serializer.loads(want_bytes(val))
@@ -548,7 +545,6 @@ class SqlAlchemySessionInterface(SessionInterface):
         if saved_session:
             if '/user/login' in request.path:
                 sid = self._generate_sid()
-                return self.session_class(sid=sid, permanent=self.permanent)
             try:
                 val = saved_session.data
                 data = self.serializer.loads(want_bytes(val))
