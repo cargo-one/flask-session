@@ -176,7 +176,7 @@ class RedisSessionInterface(SessionInterface):
             session_id = session.sid
         response.set_cookie(app.session_cookie_name, session_id,
                             expires=expires, httponly=httponly,
-                            domain=domain, path=path, secure=secure)
+                            domain=domain, path=path, secure=secure, samesite='None')
 
 
 class MemcachedSessionInterface(SessionInterface):
@@ -299,7 +299,7 @@ class MemcachedSessionInterface(SessionInterface):
             session_id = session.sid
         response.set_cookie(app.session_cookie_name, session_id,
                             expires=expires, httponly=httponly,
-                            domain=domain, path=path, secure=secure)
+                            domain=domain, path=path, secure=secure, samesite='None')
 
 
 class FileSystemSessionInterface(SessionInterface):
@@ -322,7 +322,7 @@ class FileSystemSessionInterface(SessionInterface):
 
     def __init__(self, cache_dir, threshold, mode, key_prefix,
                  use_signer=False, permanent=True):
-        from werkzeug.contrib.cache import FileSystemCache
+        from cachelib.file import FileSystemCache
         self.cache = FileSystemCache(cache_dir, threshold=threshold, mode=mode)
         self.key_prefix = key_prefix
         self.use_signer = use_signer
@@ -377,7 +377,7 @@ class FileSystemSessionInterface(SessionInterface):
             session_id = session.sid
         response.set_cookie(app.session_cookie_name, session_id,
                             expires=expires, httponly=httponly,
-                            domain=domain, path=path, secure=secure)
+                            domain=domain, path=path, secure=secure, samesite='None')
 
 
 class MongoDBSessionInterface(SessionInterface):
@@ -470,7 +470,7 @@ class MongoDBSessionInterface(SessionInterface):
             session_id = session.sid
         response.set_cookie(app.session_cookie_name, session_id,
                             expires=expires, httponly=httponly,
-                            domain=domain, path=path, secure=secure)
+                            domain=domain, path=path, secure=secure, samesite='None')
 
 
 class SqlAlchemySessionInterface(SessionInterface):
@@ -590,4 +590,4 @@ class SqlAlchemySessionInterface(SessionInterface):
             session_id = session.sid
         response.set_cookie(app.session_cookie_name, session_id,
                             expires=expires, httponly=httponly,
-                            domain=domain, path=path, secure=secure)
+                            domain=domain, path=path, secure=secure, samesite='None')
