@@ -137,6 +137,10 @@ class ServerSideSessionInterface(SessionInterface, ABC):
     def fetch_session(self, sid):
         raise NotImplementedError()
 
+    def regenerate_sid(self):
+        sid = self._generate_sid(self.sid_length)
+        return self.session_class(sid=sid, permanent=self.permanent)
+
 
 class RedisSessionInterface(ServerSideSessionInterface):
     """Uses the Redis key-value store as a session backend. (`redis-py` required)
