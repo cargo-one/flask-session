@@ -182,9 +182,9 @@ class RedisSessionInterface(ServerSideSessionInterface):
                 return self.session_class(session_data, sid=sid)
             except pickle.UnpicklingError:
                 return self.session_class(sid=sid, permanent=self.permanent)
-        else:
-            # If there is no saved session on the server, generate a new session id to mitigate session fixation vulnerability
-            sid = self._generate_sid(self.sid_length)
+
+        # If there is no saved session on the server, generate a new session id to mitigate session fixation vulnerability
+        sid = self._generate_sid(self.sid_length)
 
         # If the saved session  does not exist, create a new session
         return self.session_class(sid=sid, permanent=self.permanent)
@@ -289,9 +289,9 @@ class MemcachedSessionInterface(ServerSideSessionInterface):
                 return self.session_class(session_data, sid=sid)
             except pickle.UnpicklingError:
                 return self.session_class(sid=sid, permanent=self.permanent)
-        else:
-            # If there is no saved session on the server, generate a new session id to mitigate session fixation vulnerability
-            sid = self._generate_sid(self.sid_length)
+
+        # If there is no saved session on the server, generate a new session id to mitigate session fixation vulnerability
+        sid = self._generate_sid(self.sid_length)
 
         # If the saved session  does not exist, create a new session
         return self.session_class(sid=sid, permanent=self.permanent)
@@ -378,9 +378,9 @@ class FileSystemSessionInterface(ServerSideSessionInterface):
         # If the saved session exists and has not auto-expired, load the session data from the item
         if item is not None:
             return self.session_class(item, sid=sid)
-        else:
-            # If there is no saved session on the server, generate a new session id to mitigate session fixation vulnerability
-            sid = self._generate_sid(self.sid_length)
+
+        # If there is no saved session on the server, generate a new session id to mitigate session fixation vulnerability
+        sid = self._generate_sid(self.sid_length)
 
         # If the saved session  does not exist, create a new session
         return self.session_class(sid=sid, permanent=self.permanent)
@@ -493,9 +493,9 @@ class MongoDBSessionInterface(ServerSideSessionInterface):
                 return self.session_class(session_data, sid=sid)
             except pickle.UnpicklingError:
                 return self.session_class(sid=sid, permanent=self.permanent)
-        else:
-            # If there is no saved session on the server, generate a new sid to mitigate session fixation vulnerability
-            sid = self._generate_sid(self.sid_length)
+
+        # If there is no saved session on the server, generate a new sid to mitigate session fixation vulnerability
+        sid = self._generate_sid(self.sid_length)
 
         # If the saved session does not exist, create a new session
         return self.session_class(sid=sid, permanent=self.permanent)
@@ -662,9 +662,9 @@ class SqlAlchemySessionInterface(ServerSideSessionInterface):
                 return self.session_class(session_data, sid=sid)
             except pickle.UnpicklingError:
                 return self.session_class(sid=sid, permanent=self.permanent)
-        else:
-            # If there is no saved session on the server, generate a new session id to mitigate session fixation vulnerability
-            sid = self._generate_sid(self.sid_length)
+
+        # If there is no saved session on the server, generate a new session id to mitigate session fixation vulnerability
+        sid = self._generate_sid(self.sid_length)
 
         return self.session_class(sid=sid, permanent=self.permanent)
 
