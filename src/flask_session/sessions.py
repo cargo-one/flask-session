@@ -205,7 +205,9 @@ class RedisSessionInterface(ServerSideSessionInterface):
                 response.delete_cookie(
                     app.config["SESSION_COOKIE_NAME"], domain=domain, path=path
                 )
-            return
+            return None
+        elif not session.modified:
+            return None
 
         # Get the new expiration time for the session
         expiration_datetime = self.get_expiration_time(app, session)
@@ -315,7 +317,9 @@ class MemcachedSessionInterface(ServerSideSessionInterface):
                 response.delete_cookie(
                     app.config["SESSION_COOKIE_NAME"], domain=domain, path=path
                 )
-            return
+            return None
+        elif not session.modified:
+            return None
 
         # Get the new expiration time for the session
         expiration_datetime = self.get_expiration_time(app, session)
@@ -404,7 +408,9 @@ class FileSystemSessionInterface(ServerSideSessionInterface):
                 response.delete_cookie(
                     app.config["SESSION_COOKIE_NAME"], domain=domain, path=path
                 )
-            return
+            return None
+        elif not session.modified:
+            return None
 
         # Get the new expiration time for the session
         expiration_datetime = self.get_expiration_time(app, session)
@@ -522,7 +528,9 @@ class MongoDBSessionInterface(ServerSideSessionInterface):
                 response.delete_cookie(
                     app.config["SESSION_COOKIE_NAME"], domain=domain, path=path
                 )
-            return
+            return None
+        elif not session.modified:
+            return None
 
         # Get the new expiration time for the session
         expiration_datetime = self.get_expiration_time(app, session)
@@ -690,7 +698,9 @@ class SqlAlchemySessionInterface(ServerSideSessionInterface):
                 response.delete_cookie(
                     app.config["SESSION_COOKIE_NAME"], domain=domain, path=path
                 )
-            return
+            return None
+        elif not session.modified:
+            return None
 
         # Serialize session data
         serialized_session_data = self.serializer.dumps(dict(session))
