@@ -3,6 +3,7 @@ Version 0.6.1
 
 -   Regenerating the session id every time the session is not found on the server side.
 -   Added `regenerate_sid` to `ServerSideSessionInterface` to allow regenerating the session id if needed.
+-   Ported old fix to avoid storing session if the session has not changed.
 
 Version 0.6.0-RC1
 ------------------
